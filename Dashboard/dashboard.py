@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -10,7 +11,8 @@ sns.set(style='dark')
 # --- MEMUAT DATA ---
 @st.cache_data
 def load_data():
-    df = pd.read_csv("main_data.csv")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(BASE_DIR, "main_data.csv"))
     df["order_purchase_timestamp"] = pd.to_datetime(df["order_purchase_timestamp"])
     return df
 
